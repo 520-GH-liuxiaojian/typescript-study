@@ -137,5 +137,25 @@ Ts 是 Js 语言超集 并且具有**静态类型**的机制 不会再浏览器�
 
 
 
+## ts 静态类型的深入理解
+
+```typescript
+interface PointInterface {
+    x: number,
+    y: number,
+}
+
+const point: PointInterface = {
+    x: 123,
+    y: 256,
+};
+```
+
+数据类型一旦确定 就会使用具体的数据的类型属性及其方法
+
+变量类型的一旦确定 变量提示的属性和方法基本就确定了 不能在更改
+
+
+
 
 
