@@ -121,3 +121,21 @@ Ts 是 Js 语言超集 并且具有**静态类型**的机制 不会再浏览器�
 
 
 
+## Ts 基础环境搭建
+
++ 安装 node
+
++ 全局安装 typescript
+
+  + 编译 ts 文件
+
+  + ```shell
+    tsc file.ts
+    ```
+
++ 全局安装 ts-node
+
+
+
+
+
