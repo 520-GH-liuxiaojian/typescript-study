@@ -157,5 +157,76 @@ const point: PointInterface = {
 
 
 
+## ts 基础类型和对象类型
 
+基础类型 string number boolean symbol null
+
+声明变量的方式
+
+```typescript
+const count: number = 123;
+const teacherName: string = 'abc';
+....
+```
+
+
+
+数组数据类型
+
++ 通过指定数据类型 该数组就只能存放指定的数据类型
+
+  + 正确写法
+
+  ```typescript
+  const numberArray: number[] = [1, 2, 3];
+  ```
+
+  + 错误的写法 参杂了其他的数据类型
+
+  ```javascript
+  const secondNumberArray: number[] = ['4', 5, 6];
+  ```
+
+
+
+对象类型
+
++ 简单的对象类型
+
+```typescript
+const teacher: { name: string, age: number } = {
+    name: 'xiao',
+    age: 18,
+};
+```
+
++ 类 也是对象类型
+
+```javascript
+class Person {}
+
+const person: Person = new Person();
+```
+
+
+
+函数类型
+
++ 有返回值
+
+```javascript
+const getTotal: () => number = () => {
+  return  123;
+}
+```
+
++ 无返回值
+
+  ```javascript
+  const getTotal: () => void = () => {
+    ....
+  }
+  ```
+
+  
 
