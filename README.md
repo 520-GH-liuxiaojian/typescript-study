@@ -403,3 +403,95 @@ const objectArr: User[] = [
 const teacherInfo: [string, string, string][] = ['xiao', 'jian', 'jian'];
 ```
 
+
+
+
+
+## interface 接口
+
+```typescript
+const getPersonName = (person: {name: string}) => {
+    console.log(person.name);
+};
+
+const setPersonName = (person: {name: string}, name: string) => {
+    person.name = name;
+};
+```
+
+通过以上的代码可以看到 为 person 对象上的 name 进行数据类型的限定 在两个方法中都重复了  **{name: string}**
+
+这句代码就可以使用 interface 进行简化
+
+```typescript
+interface Person {
+    name: string
+}
+
+const getPersonName = (person: Person) => {
+    console.log(person.name);
+};
+
+const setPersonName = (person: Person, name: string) => {
+    person.name = name;
+};
+```
+
+**类型别名和接口区别**
+
++ 两者都可以指定数据类型 
++ interface 具体指对象 属性和数据类型
++ type 也可以指具体的对象 但是也可以指定具体的数据类型
+
+
+
+潜规则： 能用 接口代替 就用接口的代替
+
+
+
+## 复习
+
+**ts 基础类型 boolean number string void undefined symbol null**
+
++ 特殊点
+
+```typescript
+let count; // 这里类型是 any
+count = 123;
+```
+
+
+
+**对象类型 {} class function []**
+
+**日期类型**
+
+```typescript
+const date: Date = new Date();
+```
+
+**JSON 转化的类型**
+
+```typescript
+interface JsonParseResult {
+    name: string,
+    dell: string
+}
+
+const rawDate = '{"name": "dell"}';
+const newDate: JsonParseResult = JSON.parse(rawDate);
+```
+
+**一个变量可以的设置多个类型**
+
+```typescript
+let temp: number | string = 123;
+temp = '123';
+```
+
+
+
+
+
+
+
