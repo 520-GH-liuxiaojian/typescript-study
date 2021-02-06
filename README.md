@@ -274,3 +274,59 @@ const countInference = 123;
 
 
 Ts 存在的意义就是让每一个的变量都有属于自己的类型
+
+
+
+## ts 函数类型
+
+Ts 和 js 函数一样 定义的函数的方式是一样的
+
+```typescript
+function hello() {}
+const hello2 = function () {};
+const hello3 = () => {};
+```
+
+
+
+**函数定义的参数需要指定的具体的数据类型**
+
+**如何在条件允许的情况下需要指定函数返回值类型**
+
+```typescript
+function add(first: number, second: number): number {
+    return first + second;
+}
+
+const result: number = add(10, 20);
+```
+
+
+
+**定义函数设置的无返回值**
+
+```javascript
+function sayHelllo():void {
+    console.log('hello');
+}
+```
+
+**定义一个执行不到最后的函数返回值**
+
+```typescript
+function errorEmitter(): never {
+    throw new Error('error');
+    console.log(123);
+}
+```
+
+
+
+**针对函数参数结构的情况**
+
+```typescript
+function minus({ first, second }: {first: string, second: string}): string {
+    return first + second;
+}
+```
+
