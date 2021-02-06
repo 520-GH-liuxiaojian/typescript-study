@@ -230,3 +230,47 @@ const getTotal: () => number = () => {
 
   
 
+## 类型注解和类型推断
+
+类型注解： 由自己告诉 TS 变量是属于什么类型
+
+类型推断： Ts 在编译的时候就可以通过内置的变量的类型推断出变量是什么类型
+
+
+
+类型注解
+
+```javascript
+let count: number;
+count = 123;
+```
+
+类型推断
+
+```javascript
+// 可以通过数据的类型推断的变量的数据类型
+const countInference = 123;
+```
+
+总结: 
+
++ 如果 Ts 能够分析变量的类型 我们便无需指定变量的数据类型
++ 如果 Ts 无法分析变量类型的话 我们就需要使用类型注解
+
+
+
+场景：
+
++ 常规的变量定义并且赋值无需类型注解
+
++ 方法参数需要指定数据类型 【否则就是 any 类型】
+
+  ```javascript
+  function getTotal(firstName: number, secondName: number) {
+      return firstName + secondName;
+  }
+  ```
+
+
+
+Ts 存在的意义就是让每一个的变量都有属于自己的类型
