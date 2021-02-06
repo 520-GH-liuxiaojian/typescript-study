@@ -493,5 +493,40 @@ temp = '123';
 
 
 
+## 数组和元组
 
+数组单一存放指定的数据类型值
+
+```typescript
+const arr: number[] = [1, 2, 3];
+```
+
+数组存放多个数据类型值
+
+```typescript
+const arrString: (number | string)[] = [1, '2', 3];
+```
+
+存放对象
+
+```typescript
+const objectArr: {name: string, age: number}[] = [
+     { name: 'dell', age: 18 },
+];
+```
+
+使用类型别名进行限制
+
+```typescript
+type User = {name: string, age: number}
+const objectArr: User[] = [
+    { name: 'dell', age: 18 },
+];
+```
+
+元组 对数组中的每个数据类型进行限制
+
+```typescript
+const teacherInfo: [string, string, string][] = ['xiao', 'jian', 'jian'];
+```
 
