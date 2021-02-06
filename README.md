@@ -330,3 +330,76 @@ function minus({ first, second }: {first: string, second: string}): string {
 }
 ```
 
+
+
+## 复习
+
+**日期类型**
+
+```typescript
+const date: Date = new Date();
+```
+
+**JSON 转化后类型**
+
+```typescript
+interface JsonParseResult {
+    name: string,
+    dell: string
+}
+
+const rawDate = '{"name": "dell"}';
+const newDate: JsonParseResult = JSON.parse(rawDate);
+```
+
+**一个变量可以的设置多个类型**
+
+```typescript
+let temp: number | string = 123;
+temp = '123';
+```
+
+
+
+## 数组和元组
+
+### 数组
+
+**数组单一存放指定数据类型值**
+
+```typescript
+const arr: number[] = [1, 2, 3];
+
+const arrUndefined: undefined[] = [undefined];
+```
+
+**可以存放多个数据类型值**
+
+```typescript
+const arrString: (number | string)[] = [1, '2', 3];
+```
+
+**存放对象**
+
+```typescript
+const objectArr: {name: string, age: number}[] = [
+    { name: 'dell', age: 18 },
+];
+
+// 使用类型别名进行限制
+type User = {name: string, age: number}
+const objectArr: User[] = [
+    { name: 'dell', age: 18 },
+];
+```
+
+
+
+### 元组
+
+对数组中的每个数据类型进行限制 前提是数组的中的数据个数是有限制
+
+```typescript
+const teacherInfo: [string, string, string][] = ['xiao', 'jian', 'jian'];
+```
+
