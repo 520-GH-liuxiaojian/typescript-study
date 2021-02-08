@@ -530,3 +530,93 @@ const objectArr: User[] = [
 const teacherInfo: [string, string, string][] = ['xiao', 'jian', 'jian'];
 ```
 
+
+
+## interface 接口
+
+```typescript
+const getPersonName = (person: {name:string}) => {
+    console.log(person.name);
+};
+
+const setPersonName = (person: {name:string}, name: string) => {
+    person.name = name;
+};
+```
+
+以上两段的代码的可以 person 的 name 属性都是的 string 这里的代码重复 对于重复的代码可以通过 接口的进行提取 interface
+
+```typescript
+interface Person {
+  	// readonly 只读属性
+    readonly name: string,
+    // 可有可无
+    age?: number,
+    // 其他的属性 属性名为 string  值为 any  
+    [propName: string]: any,
+    // 方法 并且限定返回值
+    say(): string,
+}
+```
+
+```typescript
+interface Person {
+  name:string
+}
+
+const getPersonName = (person: Person) => {
+    console.log(person.name);
+};
+
+const setPersonName = (person: Person, name: string) => {
+    person.name = name;
+};
+```
+
+
+
+**interface 和 type 的区别:**
+
+两个的差别不是很大 但是还是有一定的别的 
+
++ interface 只可以代表一个对象 对象只能设置的属性和的属性值的数据类型
++ Type 可以代表对象 也可以代表一个的具体数据类型值
+
+
+
+**类可以应用接口 当应用接口之后 就必须要使用 接口中的所有必填属性和方法**
+
+```typescript
+class User implements Person {
+    name = 'dell'
+
+    say(): string {
+        return 'hello';
+    }
+}
+```
+
+
+
+**接口和接口之间是可以相互继承 【父接口属性和方法被继承接口中可以使用】**
+
+```typescript
+interface Teacher extends Person {
+    teach(): string,
+}
+```
+
+
+
+**接口可以应用函数**
+
+```typescript
+interface SayHi {
+    (word: string): string
+}
+
+const say: SayHi = (word: string) => word;
+```
+
+
+
