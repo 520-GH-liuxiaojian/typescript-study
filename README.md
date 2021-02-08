@@ -657,3 +657,96 @@ class Teacher extends Person {
 子类继承父类的之后的子类中的就可以通过 **super** 关键字的进行 父类函数和方法的调用
 
 子类继承父类之后 子类可以重写父类的具体的方法 在实例化的中优先会调用 子类重写的方法
+
+
+
+## 类中 getter 和 setter
+
+在类中经常会有设置的某个属性或者获取某个的属性的特点 这个时候就可以通过 setter 和 getter 进行设置
+
+在 getter 和 setter 中就可以设置在逻辑的执行的过程中设置额外逻辑
+
+```typescript
+class Person {
+  	private _name: string
+
+    constructor(name : string) {
+        this.name = name;
+    }
+
+    // getter 用来获取类中的指定的值
+    get name() {
+        return `${this._name}lee`;
+    }
+
+    // setter 用来设置类中的指定的属性
+    set name(name: string) {
+        const realName = name.split(' ')[0];
+        this._name = realName;
+    }
+}
+
+const person = new Person('dell');
+
+// 类中的 setter 和 getter 都是类的属性不是方法 在使用的时候都只能使用属性的点
+
+// 获取类中 getter 属性的值 这是属性不是方法
+console.log(person.name);
+
+// 设置类中 setter 属性的值
+person.name = 'hi';
+
+console.log(person.name);
+```
+
+注意: **getter 和 setter 是属性 不能通过方法方式进行数据获取 只能通过 属性方式进行数据获取**
+
+
+
+减少类中编码量
+
+```typescript
+class Person {
+  	private _name: string
+
+    constructor(name : string) {
+        this.name = name;
+    }
+}
+```
+
+以上的代码就可以通过简化
+
+```typescript
+class Person {
+    constructor(private name : string) {}
+}
+```
+
+
+
+## 单列模式
+
+单列模式就是提供一个 类 这个类只有一个的唯一的实例 不管类实例多少次 永远只有一个
+
++ 类中有一个的 构造函数 constructor 这个构造函数在类实例之后就会 立即执行 如果不想类被 new 就可以将类进行 private 化
++ 类中有一个属性和方法有一个修饰符 static 加上这个属性的就可以将属性和方法挂载类上 而不是类的实例上 外部就可以直接通过 类点出具体 static 方法
+
+```typescript
+class Demo {
+    private static instance: Demo
+  	
+    // 将 constructor private 化之后 类不能通过 new 关键字使用
+    // 无法通过 new 的关键字调用 就必须要给外部提供一个静态方法
+    private constructor() {}
+
+    // static 会将属性和方法挂载在类上 而不是类的实例上
+    public static getInstance(): Demo {
+        if (!this.instance) {
+            this.instance = new Demo();
+        }
+        return this.instance;
+    }
+}
+```
+
