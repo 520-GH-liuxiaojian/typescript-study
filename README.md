@@ -620,3 +620,40 @@ const say: SayHi = (word: string) => word;
 
 
 
+
+
+## 类的定义和继承
+
+Ts 中的类和 js 中类效果相同 都可以将公共的代码的进行在类中存放 但是 TS 中类的 相较于 JS 功能更强
+
+```typescript
+class Person {
+    name = 'xiao'
+
+    getName() {
+        return this.name;
+    }
+}
+```
+
+类与类之间可以相互继承
+
+```typescript
+class Teacher extends Person {
+    getTeacherName(): string {
+        return 'Teacher';
+    }
+
+    // 子类可以重写父类的方法
+    getName(): string {
+        // return 'jian';
+
+        // 通过 super 指向父类
+        return super.getName();
+    }
+}
+```
+
+子类继承父类的之后的子类中的就可以通过 **super** 关键字的进行 父类函数和方法的调用
+
+子类继承父类之后 子类可以重写父类的具体的方法 在实例化的中优先会调用 子类重写的方法
