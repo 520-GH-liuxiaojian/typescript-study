@@ -750,3 +750,33 @@ class Demo {
 }
 ```
 
+
+
+## 抽象类 abstract
+
+如果多个类都同时需要有共同的方法 这个为了代码的严谨性 通常都会定义一个抽象类 让子类继承抽象类而实现抽象类的方法和属性
+
++ 抽象类和抽象方法都可以通过 abstract 进行修饰 通过抽象类修饰抽象方法 只能定义不能被具体实现 实现由子类实现
+
+```typescript
+abstract class Person {
+    abstract getArea(): number
+}
+
+class Circlc extends Person {
+    getArea() {
+        return 123;
+    }
+}
+```
+
++ 抽象类可以有自己的属性和方法 自己属性方法不加 abstract 可以被子类继承
+
+```typescript
+abstract class Person {
+  	name: string;
+  	public getTitle() {}
+    abstract getArea(): number
+}
+```
+
