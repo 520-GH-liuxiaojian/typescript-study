@@ -784,6 +784,18 @@ abstract class Person {
 
 ## 爬虫编写
 
+初始化 ts 项目
+
+全局安装 typescript 运行 tsc --init
+
+全局安装 ts-node 
+
+
+
+**注意以上两者也可以通过项目安装**
+
+
+
 **superagent** 获取公共网页上相关 html 文本信息
 
 **cheerio** 将指定的文本节点进行成为具体节点 使用的 JQuery 语法
@@ -791,3 +803,11 @@ abstract class Person {
 
 
 注意: **有的项目是通过 js 进行编写的 在引入的时候是没有相关的提示信息 这个时候要通过 类型文件进行代码提示**
+
+
+
+## 工具安装
+
+Ts-node 直接运行 ts 代码
+
+nodemon 监听 js 变化 如果变化就可以重新进行编译
