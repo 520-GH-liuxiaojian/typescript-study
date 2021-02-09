@@ -811,3 +811,70 @@ abstract class Person {
 Ts-node 直接运行 ts 代码
 
 nodemon 监听 js 变化 如果变化就可以重新进行编译
+
+
+
+## Ts 编译运转原理
+
+可以在项目中运行 tsc 命令 通过这个命令就可以将项目的下的 ts 文件进行编译
+
+```shell
+# tsc 编译文件
+# tsc 指定文件.ts
+```
+
+这个时候可以的配置的 tsconfig.json 文件
+
+
+
+## ts 配置文件的信息
+
+注意：只能使用 tsc 进行编译 使用 tsc 执行文件的编译 并不会去除注释信息
+
+ts 进行编译的时候 会默认读取 tsConfig 配置文件信息 然后进行编译
+
+```json
+"include": ["index.ts"], // 只编译指定的文件 
+"extends": ["index.js"], // 编译排除指定的文件
+"files": ["文件"] // 只编译指定的文件
+```
+
+**compilerOptions 编译时候配置信息**
+
++ ```json
+  "removeComments": true, // 去除编译后注释信息
+  ```
+
++ ```json
+  "strict": false, // 这里的选项为 true 的话 那么以下的选项就是 true
+  "noImplicitAny": false, // 不是显示要求 any 类型 【any 类型必须指定 any】
+  "strictNullChecks": false, // 不强制检查 null 类型
+  "strictFunctionTypes": true,
+  "strictBindCallApply": true,
+  "strictPropertyInitialization": true,
+  "noImplicitThis": true,
+  "alwaysStrict": true,
+  ```
+
++ ```json
+  "rootDir": "./src", // 编译的入口文件
+  ```
+
++ ```json
+  "incremental": true, // 渐进式编译【此时编译完成 就无需再次编译】
+  ```
+
++ ```json
+  "checkJs": true, // 检测 js 文件
+  ```
+
++ ```json
+  "sourceMap": true, // 编译之后生成 sourceMap 文件
+  ```
+
++ ```json
+  "noUnusedLocals": true, // 检测未使用的变量
+  "noUnusedParameters": true, // 检测未使用的函数
+  ```
+
++ 
