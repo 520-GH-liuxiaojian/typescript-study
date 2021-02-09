@@ -877,4 +877,99 @@ ts 进行编译的时候 会默认读取 tsConfig 配置文件信息 然后进�
   "noUnusedParameters": true, // 检测未使用的函数
   ```
 
-+ 
+
+
+## 联合类型保护
+
+存在问题 一个函数中的参数存在信息时 这个的参数可以使用多个的接口或者类型时候 ts 默认的只会提示其中公共部分内容 为不会提示其他的非公共存在的内容
+
+```typescript
+interface Bird {
+    fly: boolean,
+    sing: () => {},
+}
+
+interface Dog {
+    fly: boolean,
+    bark: () => {},
+}
+
+// 这里如果使用的多个类型的联合 那么就会将提示所有接口属性公共属性
+// 这句语法就会提示报错
+function trainA()al(animal: Bird | Dog) {
+    animal.fly();
+}
+```
+
+如何解决 使用类型保护的机制进行限定
+
++ 使用接口做数据提示
+
+``` typescript
+interface Main {
+  fly: boolean,
+}
+
+interface Bird extends Main {
+    sing: () => {},
+}
+
+interface Dog  {
+    bark: () => {},
+}
+
+function trainAnial(animal: Main) {
+    animal.fly();
+}
+```
+
++ 断言保护 **as 关键字**
+
+```typescript
+function trainAnial(animal: Dog | Bird) {
+    if (animal.fly) {
+        (animal as Bird).sing();
+    } else {
+        (animal as Dog).bark();
+    }
+}
+```
+
++ in 语言实现断言保护
+
+```typescript
+function trainAnial(animal: Dog | Bird) {
+    if ('sing' in animal) {
+        animal.sing();
+    } else {
+        animal.bark();
+    }
+}
+```
+
++ typeof 语法提示
+
+```typescript
+function add(first: string | number, second: string | number) {
+    if (typeof first === 'string' || typeof second === 'string') {
+        return `${first}${second}`;
+    }
+    return first + second;
+}
+```
+
++ instanceof 语法 【只能使用 class 声明 不能使用 interface】
+
+```typescript
+class NumberObj {
+    count: number
+}
+
+function addSecond(first: object | NumberObj, second: object | NumberObj) {
+    if (first instanceof NumberObj && second instanceof NumberObj) {
+        return first.count + second.count;
+    }
+    return 0;
+}
+```
+
