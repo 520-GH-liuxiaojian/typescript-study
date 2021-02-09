@@ -973,3 +973,110 @@ function addSecond(first: object | NumberObj, second: object | NumberObj) {
 }
 ```
 
+
+
+
+
+## 枚举类型
+
+```javascript
+function getResult(status) {
+    if (status === 0) {
+        return 'offline';
+    }
+
+    if (status === 1) {
+        return 'online';
+    }
+
+    if (status === 2) {
+        return 'deleted';
+    }
+
+    return 'error';
+}
+```
+
+以下的代码实现逻辑虽然的简单的 但是代码字面亮意义看不出来代码存在的实际意义 字面意义不是特别的强
+
+这时我们可以的 js 中使用 对象类型进行限定 【限定之后 代码意义就会强很多】
+
+```typescript
+const Status = {
+    OFFLINE: 0,
+    ONLINE: 1,
+    DELETED: 2,
+};
+
+function getResult(status: number) {
+    if (status === Status.OFFLINE) {
+        return 'offline';
+    }
+
+    if (status === Status.ONLINE) {
+        return 'online';
+    }
+
+    if (status === Status.DELETED) {
+        return 'deleted';
+    }
+
+    return 'error';
+}
+```
+
+
+
+在 ts 中就可以使用 枚举类型进行限定
+
+```typescript
+enum Status {
+    OFFLINE,
+    ONLINE,
+    DELETED
+}
+
+function getResult(status: number) {
+    if (status === Status.OFFLINE) {
+        return 'offline';
+    }
+
+    if (status === Status.ONLINE) {
+        return 'online';
+    }
+
+    if (status === Status.DELETED) {
+        return 'deleted';
+    }
+
+    return 'error';
+}
+```
+
+通过枚举类型进行限定之后的代码的意义强了不少 简化代码的编写
+
++ 枚举类型的索引值默认从 0 开始 传入索引值索取指定区域值 传入 指定就会获取索引值
++ 索引值可以手动被更改 更改之后 就必须使用更改之后的值
+
+```typescript
+enum Status {
+    OFFLINE,
+    ONLINE = 3,
+    DELETED
+}
+```
+
++ 枚举类型还可以反查 不再索引值划分的区域内 得到的值是 undefined
+
+```typescript
+enum Status {
+    OFFLINE,
+    ONLINE = 3,
+    DELETED
+}
+
+Status[0] = OFFLINE
+Status[3] = ONLINE
+Status[4] = DELETED
+```
+
