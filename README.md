@@ -1080,3 +1080,59 @@ Status[3] = ONLINE
 Status[4] = DELETED
 ```
 
+
+
+## 函数泛型
+
+在 ts 数据类型 常常需要动态的设置的数据类型 这个时候就需要用到泛型 泛指使得参数的类型的可以有调用方参数的数据类型进行限制
+
+```typescript
+// 这个时候 first second 数据类型就是通过调用者动态设置
+function join<T>(first: T, second: T) {
+    return `${first}${second}`;
+}
+
+join<string>(1, 2)
+```
+
+
+
+泛型设置数组
+
+```typescript
+// 数据泛指类型 T[]
+function map<T>(params: Array<T>) {
+    return params;
+}
+
+map<string>(['1', '2']);
+```
+
+
+
+多个类型泛指类型限制
+
+```typescript
+function newJoin<T, P>(first: T, second: P) {
+    return `${first}${second}`;
+}
+
+newJoin<string, number>('a', 1);
+```
+
+
+
+这里不用写上固定数据类型 ts 会自动做类型推断
+
+```typescript
+newJoin('a', 1);
+```
+
+
+
+## 类中的泛型以及泛型类型
+
+
+
+
+
