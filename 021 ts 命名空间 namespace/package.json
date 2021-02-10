@@ -1,0 +1,9 @@
+{
+    "name": "021 ts 命名空间 namespace",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT",
+    "scripts": {
+        "dev": "tsc -w"
+    }
+}

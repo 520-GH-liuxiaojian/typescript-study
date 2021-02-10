@@ -1197,3 +1197,176 @@ const data = new DateManager<string>('abc');
 
 
 
+## namespace 命名空间提供模块化编程
+
+场景
+
+```typescript
+class Header {
+    constructor() {
+        const header:HTMLElement = document.createElement('div');
+        header.innerText = '头部';
+        document.body.appendChild(header);
+    }
+}
+
+class Main {
+    constructor() {
+        const main:HTMLElement = document.createElement('div');
+        main.innerText = '主题';
+        document.body.appendChild(main);
+    }
+}
+
+class Footer {
+    constructor() {
+        const footer:HTMLElement = document.createElement('div');
+        footer.innerText = '底部';
+        document.body.appendChild(footer);
+    }
+}
+
+// 直接通过这种方法编译类 浏览器直接就可以new
+// 在浏览器中 只需要 new pages 即可 但是将内部所有类暴露到了浏览器中 形成全局变量而污染了的代码纯洁性
+// 这里就需要使用到命名空间 namespace
+
+class Pages {
+    constructor() {
+        new Header();
+        new Main();
+        new Footer();
+    }
+}
+```
+
+通过以上的代码 可知 编译成为 js 代码的时候 每一个类都会作为全局变量在浏览器中 从而污染全局变量 这里需要用到 命名空间的提供模块化编程
+
+```typescript
+class Header {
+    constructor() {
+        const header:HTMLElement = document.createElement('div');
+        header.innerText = '头部';
+        document.body.appendChild(header);
+    }
+}
+
+class Main {
+    constructor() {
+        const main:HTMLElement = document.createElement('div');
+        main.innerText = '主题';
+        document.body.appendChild(main);
+    }
+}
+
+class Footer {
+    constructor() {
+        const footer:HTMLElement = document.createElement('div');
+        footer.innerText = '底部';
+        document.body.appendChild(footer);
+    }
+}
+
+// 直接通过这种方法编译类 浏览器直接就可以new
+// 在浏览器中 只需要 new pages 即可 但是将内部所有类暴露到了浏览器中 形成全局变量而污染了的代码纯洁性
+// 这里就需要使用到命名空间 namespace
+
+export class Pages {
+    constructor() {
+        new Header();
+        new Main();
+        new Footer();
+    }
+}
+```
+
+要将全局代码进行模块化 加上 namespace 命名空间概念 如果需要将命名空间指定方法进行导出 则需要使用 **export** 关键字
+
+**命名空间可以相互引入导出**
+
+Components 命名空间
+
+```typescript
+namespace Components {
+    export class Header {
+        constructor() {
+            const header:HTMLElement = document.createElement('div');
+            header.innerText = '头部';
+            document.body.appendChild(header);
+        }
+    }
+
+    export class Main {
+        constructor() {
+            const main:HTMLElement = document.createElement('div');
+            main.innerText = '主题';
+            document.body.appendChild(main);
+        }
+    }
+
+    export class Footer {
+        constructor() {
+            const footer:HTMLElement = document.createElement('div');
+            footer.innerText = '底部';
+            document.body.appendChild(footer);
+        }
+    }
+}
+
+```
+
+index.ts
+
+```typescript
+/// <reference path='./components.ts'
+namespace Home {
+    export class Pages {
+        constructor() {
+            new Components.Header();
+            new Components.Main();
+            new Components.Footer();
+        }
+    }
+}
+```
+
+通过 这样的方式就可以将指定模块化方法进导入和引入
+
+由于在引入时候没有使用 import 语法 命名空间的相关关系需要在引入的时候进行注明
+
+```typescript
+/// <reference path='./components.ts'
+```
+
++ namespace 可以导出子命名空间
+
+```typescript
+namespace Components {
+      // 命名空间还可以导出子命名空间
+    export namespace SubComponents {
+        export class Test {}
+    }
+}
+```
+
++ namespace 可以导出指定接口
+
+```typescript
+namespace Components {
+  	// 命名空间可以暴露 interface 接口语法
+    export interface User {
+        name: string
+    }
+}
+  
+namespace Home {
+    export class Pages {
+        user: Components.User = {
+            name: 'xiao',
+        }
+    }
+}
+```
+
+**注意：**
+
++ > "outFile": "./dist/page.js", 将模块化的文件的打包成为一个文件, 更改 outfile 配置之后 module 的 编码方式就需要改成 amd system 其他的不支持
