@@ -1082,7 +1082,7 @@ Status[4] = DELETED
 
 
 
-## 函数泛型
+## 函数泛型 增加代码执行过程中灵活性
 
 在 ts 数据类型 常常需要动态的设置的数据类型 这个时候就需要用到泛型 泛指使得参数的类型的可以有调用方参数的数据类型进行限制
 
@@ -1132,7 +1132,68 @@ newJoin('a', 1);
 
 ## 类中的泛型以及泛型类型
 
+在编写面向对象的代码时候 也会用到泛型提升代码灵活度
 
++ 简单使用
+
+```typescript
+class DateManager<T> {
+    constructor(private data: T[]) {}
+
+    getItem(index: number): T {
+        return this.data[index];
+    }
+}
+
+const data = new DateManager<number>([1]);
+data.getItem(0);
+```
+
+
+
++ 配合 interface 接口使用
+
+```typescript
+interface Item {
+    name: string
+}
+
+class DateManager<T extends Item> {
+    constructor(private data: T[]) {}
+
+    getItem(index: number): string {
+        return this.data[index].name;
+    }
+}
+
+const data = new DateManager([
+    { name: 'dell' },
+]);
+```
+
++ 使用泛型作为一个具体的类型注解
+
+```typescript
+function hello<T>(params: T) {
+    return params;
+}
+
+const func: <T>(params: T) => T = hello;
+```
+
++ 限制 T 的数据类型为 string number
+
+```typescript
+class DateManager<T extends string | number> {
+    constructor(private data: T[]) {}
+
+    getItem(index: number): string {
+        return this.data[index].name;
+    }
+}
+
+const data = new DateManager<string>('abc');
+```
 
 
 
