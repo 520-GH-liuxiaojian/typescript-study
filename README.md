@@ -1423,3 +1423,11 @@ export class Footer {
 }
 ```
 
+
+
+## 使用 parcel 打包工具进行项目打包
+
+对于 ts 编译可以使用 parcel 或者的 webpack 进行打包
+
+[parcel](https://github.com/parcel-bundler/parcel)
+

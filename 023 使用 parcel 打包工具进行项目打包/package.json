@@ -1,0 +1,12 @@
+{
+    "name": "023 使用 parcel 打包工具进行项目打包",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT",
+    "scripts": {
+        "test": "parcel ./src/index.html"
+    },
+    "devDependencies": {
+        "parcel": "^2.0.0-beta.1"
+    }
+}
