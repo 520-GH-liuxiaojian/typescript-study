@@ -16,18 +16,14 @@ interface RetrieveData {
     currentTime: number,
 }
 
-export default class Crowller {
-    private url = 'https://www.huya.com/g/3203'
+class Crowller {
+    private url = 'https://www.huya.com/g/2793'
 
     private async getRewHtml(): Promise<string> {
         const result = await superagent.get(this.url);
         return result.text;
     }
 
-    /**
-     * 这是用于获取虎牙直播页面的数据的 API
-     * @param {string} html
-     */
     private getLiveInfo(html: string): RetrieveData {
         const data: DataInfo[] = [];
         const $ = cheerio.load(html);
@@ -62,3 +58,5 @@ export default class Crowller {
         this.initSpiderProcess().then();
     }
 }
+
+export default Crowller;

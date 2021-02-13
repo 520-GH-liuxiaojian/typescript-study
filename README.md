@@ -1370,3 +1370,56 @@ namespace Home {
 **注意：**
 
 + > "outFile": "./dist/page.js", 将模块化的文件的打包成为一个文件, 更改 outfile 配置之后 module 的 编码方式就需要改成 amd system 其他的不支持
+
+
+
+
+
+## import 对应的模块化
+
+Namespace 命名空间存在问题 **模块和模块之间的饮用关系不明确**
+
+在 ts 中也可以使用 import 语法 打包生成的代码的就是 amd 规范代码的只能在 node 中使用
+
+因为在编译过后代码中有 node 的核心语法 只能在 node 才能狗使用
+
+如果编译的代码需要在浏览器中使用 则需要引入的 requireJs CDN 核心语法之后才能使用
+
+```typescript
+import { Header, Main, Footer } from './components';
+
+class Pages {
+    constructor() {
+        new Components.Header();
+        new Components.Main();
+        new Components.Footer();
+    }
+}
+```
+
+```typescript
+export class Header {
+    constructor() {
+        const header:HTMLElement = document.createElement('div');
+        header.innerText = '头部';
+        document.body.appendChild(header);
+    }
+}
+
+export class Main {
+    constructor() {
+        const main:HTMLElement = document.createElement('div');
+        main.innerText = '主题';
+        document.body.appendChild(main);
+    }
+}
+
+export class Footer {
+    constructor() {
+        const footer:HTMLElement = document.createElement('div');
+        footer.innerText = '底部';
+        document.body.appendChild(footer);
+    }
+}
+```
+
