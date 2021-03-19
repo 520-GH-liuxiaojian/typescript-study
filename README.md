@@ -1431,3 +1431,9 @@ export class Footer {
 
 [parcel](https://github.com/parcel-bundler/parcel)
 
+
+
+
+
+## 描述文件中的全局类型 **.d.ts
+
